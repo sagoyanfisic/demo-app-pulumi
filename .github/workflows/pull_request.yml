@@ -1,0 +1,40 @@
+#this workflow detects if a frappe.add_index method is being used, excludes itself
+name: detect-index
+on:
+  pull_request:
+    branches:
+      - master
+
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  preview:
+    name: Preview
+    runs-on: ubuntu-latest
+    environment: develop
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.1
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          version: '>= 363.0.0'
+          project_id: '${{secrets.PROJECT_ID}}'
+          service_account_key: '${{ secrets.GCP_SA_KEY }}'
+          export_default_credentials: true
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          version: '>= 363.0.0'
+          
+      - name: Use gcloud CLI
+        run: gcloud info
+      
+      - name: 'Use gcloud CLI'
+        run: 'gcloud auth list --filter=status:ACTIVE --format="value(account)"'
