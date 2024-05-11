@@ -1,9 +1,9 @@
-#this workflow detects if a frappe.add_index method is being used, excludes itself
-name: detect-index
+name: Deploy to Cloud SDK
 on:
   pull_request:
     branches:
       - master
+      - feature/cloud/sdk
 
 
 defaults:
