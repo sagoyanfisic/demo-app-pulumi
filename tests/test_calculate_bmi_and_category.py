@@ -1,5 +1,5 @@
 import pytest
-from main import BMICalculator, BMIService
+from ..main import BMICalculator, BMIService
 
 @pytest.fixture
 def bmi_calculator():
